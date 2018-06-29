@@ -50,7 +50,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation (rootProject.ext.dependencies["cardview-v7"])
 
     implementation 'me.jessyan:arms:2.4.1'
     implementation rootProject.ext.dependencies["gson"]
@@ -63,4 +62,5 @@ dependencies {
     debugImplementation rootProject.ext.dependencies["canary-debug"]
 
     implementation 'org.greenrobot:greendao:3.2.2'
+    implementation 'com.roughike:bottom-bar:2.3.1'
 }

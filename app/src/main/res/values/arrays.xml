@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="main_sliding_tabs">
+        <item>直播</item>
+        <item>推荐</item>
+        <item>追番</item>
+        <item>人生一串</item>
+        <item>一起跳舞吧!</item>
+
+    </string-array>
+</resources>

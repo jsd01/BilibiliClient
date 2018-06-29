@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<!--组之间的分割线添加id后出现-->
+    <group android:id="@+id/gr1" android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:title="@string/drawer_home"
+            android:icon="@mipmap/ic_navigation_header_notification"/>
+        <item
+            android:id="@+id/nav_historyrecord"
+            android:title="@string/drawer_historyrecord"
+            android:icon="@mipmap/ic_navigation_header_notification"/>
+        <item
+            android:id="@+id/nav_offlinecach"
+            android:title="@string/drawer_offlinecach"
+            android:icon="@mipmap/ic_navigation_header_notification"/>
+        <item
+            android:id="@+id/nav_collection"
+            android:title="@string/drawer_collection"
+            android:icon="@mipmap/ic_navigation_header_notification"/>
+        <item
+            android:id="@+id/nav_follow"
+            android:title="@string/drawer_follow"
+            android:icon="@mipmap/ic_navigation_header_notification"/>
+        <item
+            android:id="@+id/nav_waitlook"
+            android:title="@string/drawer_waitlook"
+            android:icon="@mipmap/ic_navigation_header_notification"/>
+    </group>
+
+    <group android:id="@+id/gr2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_onlivecenter"
+            android:title="@string/drawer_onlivecenter"
+            android:icon="@mipmap/ic_navigation_header_notification"/>
+        <item
+            android:id="@+id/nav_vip"
+            android:title="@string/drawer_vip"
+            android:icon="@mipmap/ic_navigation_header_notification"/>
+        <item
+            android:id="@+id/nav_freeflow"
+            android:title="@string/drawer_freeflow"
+            android:icon="@mipmap/ic_navigation_header_notification"/>
+        <item
+            android:id="@+id/nav_vipbuy"
+            android:title="@string/drawer_vipbuy"
+            android:icon="@mipmap/ic_navigation_header_notification"/>
+        <item
+            android:id="@+id/nav_custom"
+            android:title="@string/drawer_custom"
+            android:icon="@mipmap/ic_navigation_header_notification"/>
+        <item
+            android:id="@+id/nav_null"
+            android:title=""/>
+    </group>
+
+</menu>

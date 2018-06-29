@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">哔哩哔哩</string>
+
+    <string name="main_tab_home">首页</string>
+    <string name="main_tab_channel">频道</string>
+    <string name="main_tab_dynamic">动态</string>
+    <string name="main_tab_vipbuy">会员购</string>
+
+    <string name="drawer_home">首页</string>
+    <string name="drawer_historyrecord">历史记录</string>
+    <string name="drawer_offlinecach">离线缓存</string>
+    <string name="drawer_collection">我的收藏</string>
+    <string name="drawer_follow">我的关注</string>
+    <string name="drawer_waitlook">稍候再看</string>
+    <string name="drawer_onlivecenter">直播中心</string>
+    <string name="drawer_vip">我的大会员</string>
+    <string name="drawer_freeflow">免流量服务</string>
+    <string name="drawer_vipbuy">会员购中心</string>
+    <string name="drawer_custom">联系客服</string>
+    <string name="drawer_sets">设置</string>
+    <string name="drawer_theme">主题</string>
+    <string name="drawer_night">夜间</string>
+
 </resources>
