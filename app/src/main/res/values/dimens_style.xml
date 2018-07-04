@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="nav_header_height">@dimen/dp_135</dimen>
+    <dimen name="activity_vertical_margin">@dimen/dp_7</dimen>
+    <dimen name="activity_horizontal_margin">@dimen/dp_7</dimen>
+    <dimen name="nav_header_vertical_spacing">@dimen/dp_2</dimen>
+    <dimen name="default_general_margin">@dimen/dp_7</dimen>
+    <dimen name="default_small_text_size">@dimen/dp_4_5</dimen>
+    <!-- Your custom size defind by references, can be writted in anywhere, any module, any values/*.xml, for example: -->
+    <dimen name="home_tab_height">@dimen/dp_34</dimen>
+</resources>
