@@ -50,10 +50,14 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation rootProject.ext.dependencies["cardview-v7"]
 
     implementation 'me.jessyan:arms:2.4.1'
+    implementation rootProject.ext.dependencies["retrofit-url-manager"]
+    implementation rootProject.ext.dependencies["fragmentation-core"]
+    implementation rootProject.ext.dependencies["rxlifecycle2-components"]//RxUtils使用
+
     implementation rootProject.ext.dependencies["gson"]
-    implementation rootProject.ext.dependencies["autolayout"]
     annotationProcessor rootProject.ext.dependencies["butterknife-compiler"] //Butterknife 插件,很多人因为没加这个而报错,切记!!!
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
     implementation rootProject.ext.dependencies["arouter"]

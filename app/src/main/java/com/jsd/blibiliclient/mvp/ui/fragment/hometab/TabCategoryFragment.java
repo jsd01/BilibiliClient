@@ -6,7 +6,9 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,15 +17,18 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.jess.arms.base.BaseFragment;
+import com.jess.arms.base.DefaultAdapter;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 
+import com.jsd.blibiliclient.app.widget.CustomEmptyView;
 import com.jsd.blibiliclient.di.component.DaggerTabCategoryComponent;
 import com.jsd.blibiliclient.di.module.TabCategoryModule;
 import com.jsd.blibiliclient.mvp.contract.TabCategoryContract;
 import com.jsd.blibiliclient.mvp.presenter.TabCategoryPresenter;
 
 import com.jsd.blibiliclient.R;
+import com.jsd.blibiliclient.mvp.ui.adapter.HomeLiveAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,14 +38,17 @@ import butterknife.BindView;
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
-public class TabCategoryFragment extends BaseFragment<TabCategoryPresenter> implements TabCategoryContract.View {
+public class TabCategoryFragment extends BaseFragment<TabCategoryPresenter> implements TabCategoryContract.View , SwipeRefreshLayout.OnRefreshListener{
 
+    @BindView(R.id.swipe_refresh_layout)
+    SwipeRefreshLayout mSwipeRefreshLayout;
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
+    @BindView(R.id.empty_layout)
+    CustomEmptyView mCustomEmptyView;
 
     private String type;
-    private MyRecyclerViewAdapter mAdapter;
-    private List<String> list = new ArrayList<>();
+    private HomeLiveAdapter mHomeLiveAdapter;
 
     public static TabCategoryFragment newInstance(String s) {
         TabCategoryFragment fragment = new TabCategoryFragment();
@@ -68,11 +76,11 @@ public class TabCategoryFragment extends BaseFragment<TabCategoryPresenter> impl
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
         type = getArguments().getString("type");
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
-        mAdapter = new MyRecyclerViewAdapter();
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        mRecyclerView.setAdapter(mAdapter);
+//        mHomeLiveAdapter = new HomeLiveAdapter(getContext());
+        mPresenter.requestLiveData(true);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
     }
+
 
     /**
      * 通过此方法可以使 Fragment 能够与外界做一些交互和通信, 比如说外部的 Activity 想让自己持有的某个 Fragment 对象执行一些方法,
@@ -112,7 +120,7 @@ public class TabCategoryFragment extends BaseFragment<TabCategoryPresenter> impl
      */
     @Override
     public void setData(@Nullable Object data) {
-
+//        mHomeLiveAdapter.setLiveInfo(data);
     }
 
     @Override
@@ -142,37 +150,34 @@ public class TabCategoryFragment extends BaseFragment<TabCategoryPresenter> impl
 
     }
 
-    private class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
-        private int[] list = {1,2,3,4,5,6,7,8,9,0,10,1,1,1,12,12,123,123,123,123,123,123,123,};
+    @Override
+    public void startLoadMore() {
 
-        public MyRecyclerViewAdapter() {
-        }
+    }
 
-        @Override
-        public MyRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_base_use, parent, false);
-            MyRecyclerViewAdapter.ViewHolder viewHolder = new MyRecyclerViewAdapter.ViewHolder(view);
-            return viewHolder;
-        }
+    @Override
+    public void endLoadMore() {
 
-        @Override
-        public void onBindViewHolder(MyRecyclerViewAdapter.ViewHolder holder, int position) {
-            holder.mText.setText(list[position]+"");
-        }
+    }
 
-        @Override
-        public int getItemCount() {
-            return list.length;
-        }
+    @Override
+    public void setAdapter(RecyclerView.Adapter mAdapter) {/*还没有调用请求数据，18:06:45*/
+        mHomeLiveAdapter = (HomeLiveAdapter)mAdapter;
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setAdapter(mHomeLiveAdapter);
 
-        class ViewHolder extends RecyclerView.ViewHolder {
-            TextView mText;
-
-            ViewHolder(View itemView) {
-                super(itemView);
-                mText = itemView.findViewById(R.id.item_tx);
+        GridLayoutManager layout = new GridLayoutManager(getContext(), 12, LinearLayoutManager.VERTICAL,false);
+        layout.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {/*每个Item的宽度*/
+                return mHomeLiveAdapter.getSpanSize(position);
             }
+        });
+        mRecyclerView.setLayoutManager(layout);
+    }
 
-        }
+    @Override
+    public void onRefresh() {
+        mPresenter.requestLiveData(true);
     }
 }

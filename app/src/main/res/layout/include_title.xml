@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:background="?attr/colorPrimary"
     app:contentInsetStart="0dp"
-    app:titleMarginStart="20dp"
+    app:titleMarginStart="@dimen/dp_20"
     app:layout_scrollFlags="scroll|enterAlways"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     >
@@ -23,8 +23,8 @@
             android:id="@+id/app_main_icon_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
             android:layout_centerVertical="true"
             android:src="@mipmap/ic_category_t30"/>
 
@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:textColor="@color/_text__white"
+        android:textColor="@color/white_80"
         android:layout_gravity="center"/>
 
 </android.support.v7.widget.Toolbar>

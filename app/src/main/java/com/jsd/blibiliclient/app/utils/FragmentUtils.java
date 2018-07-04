@@ -529,13 +529,14 @@ public final class FragmentUtils {
         Bundle args = destFragment.getArguments();
 
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        if (sharedElements == null || sharedElements.length == 0) {
+        /*去除了fragment切换的动画*/
+        /*if (sharedElements == null || sharedElements.length == 0) {
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         } else {
             for (SharedElement element : sharedElements) {// 添加共享元素动画
                 ft.addSharedElement(element.sharedElement, element.name);
             }
-        }
+        }*/
         switch (type) {
             case TYPE_ADD_FRAGMENT:
                 if (srcFragment != null)

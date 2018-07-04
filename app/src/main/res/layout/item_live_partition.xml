@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/item_live_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/dp_14"
+        android:layout_weight="1"
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/dp_1_5"
+        app:cardElevation="@dimen/dp_3">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_180"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/item_live_cover"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_120"
+                android:scaleType="center" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/dp_5">
+
+                <com.jsd.blibiliclient.app.widget.CircleImageView
+                    android:id="@+id/item_live_user_cover"
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:layout_gravity="start|top"
+                    android:src="@drawable/ico_user_default"
+                    app:border_color="@android:color/white"
+                    app:border_width="@dimen/dp_1"/>
+
+                <TextView
+                    android:id="@+id/item_live_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_3"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/black_alpha_60"
+                    android:textSize="@dimen/default_small_text_size"/>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="15px">
+
+                <TextView
+                    android:id="@+id/item_live_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dp_4"
+                    android:textColor="@color/black_alpha_60"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+                    android:textSize="@dimen/sp_12"/>
+
+                <TextView
+                    android:id="@+id/item_live_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dp_4"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:drawableStart="@drawable/ic_watching"
+                    android:padding="@dimen/dp_2"
+                    android:drawablePadding="@dimen/dp_3"
+                    android:textColor="@color/black_alpha_60"
+                    android:textSize="36sp"/>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

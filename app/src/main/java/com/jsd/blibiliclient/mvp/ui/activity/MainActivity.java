@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +32,7 @@ import com.jsd.blibiliclient.mvp.ui.fragment.main.DynamicFragment;
 import com.jsd.blibiliclient.mvp.ui.fragment.main.VipBuyFragment;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
+import com.tbruyelle.rxpermissions2.RxPermissions;
 
 
 import java.util.ArrayList;
@@ -44,9 +47,12 @@ import static com.jsd.blibiliclient.app.ARouterPaths.MAIN;
 import static com.jsd.blibiliclient.app.EventBusTags.ACTIVITY_FRAGMENT_REPLACE;
 
 @Route(path = MAIN)
-public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View {
+public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View, NavigationView.OnNavigationItemSelectedListener {
 
-
+    @BindView(R.id.drawer_layout)
+    DrawerLayout mDrawerLayout;
+    @BindView(R.id.drawer_nav)
+    NavigationView mNavigationView;
     @BindView(R.id.bottomBar)
     BottomBar mBottomBar;
     @BindView(R.id.app_main_icon_user)
@@ -57,6 +63,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     private List<Integer> mNavIds;
     private int mMainPageReplace = 0;
     private int mTabPageReplace = 0;
+
+    private RxPermissions mRxPermissions;
 
     private OnTabSelectListener mOnTabSelectListener = tabId -> {
         switch (tabId) {
@@ -78,6 +86,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void setupActivityComponent(@NonNull AppComponent appComponent) {
+        this.mRxPermissions = new RxPermissions(this);
         DaggerMainComponent //如找不到该类,请编译一下项目
                 .builder()
                 .appComponent(appComponent)
@@ -101,7 +110,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             mTitles.add(R.string.main_tab_dynamic);
             mTitles.add(R.string.main_tab_vipbuy);
         }*/
-
+        mPresenter.requestPermissions();
         if (mNavIds == null) {
             mNavIds = new ArrayList<>();
             mNavIds.add(R.id.main_tab_home);
@@ -109,6 +118,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             mNavIds.add(R.id.main_tab_dynamic);
             mNavIds.add(R.id.main_tab_vipbuy);
         }
+        mNavigationView.setNavigationItemSelectedListener(this);
         HomeFragment homeFragment;
         ChannelFragment channelFragment;
         DynamicFragment dynamicFragment;
@@ -169,5 +179,42 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         super.onSaveInstanceState(outState);
         //保存当前Activity显示的Fragment索引
         outState.putInt(ACTIVITY_FRAGMENT_REPLACE, mMainPageReplace);
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.nav_home:
+                break;
+            case R.id.nav_historyrecord:
+                break;
+            case R.id.nav_offlinecach:
+                break;
+            case R.id.nav_collection:
+                break;
+            case R.id.nav_follow:
+                break;
+            case R.id.nav_waitlook:
+                break;
+
+
+            case R.id.nav_onlivecenter:
+                break;
+            case R.id.nav_vip:
+                break;
+            case R.id.nav_freeflow:
+                break;
+            case R.id.nav_vipbuy:
+                break;
+            case R.id.nav_custom:
+                break;
+        }
+        mDrawerLayout.closeDrawer(mNavigationView);
+        return true;
+    }
+
+    @Override
+    public RxPermissions getRxPermissions() {
+        return mRxPermissions;
     }
 }
