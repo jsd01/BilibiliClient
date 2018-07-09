@@ -42,23 +42,4 @@ public class MainPresenter extends BasePresenter<MainContract.Model, MainContrac
         this.mImageLoader = null;
         this.mApplication = null;
     }
-
-    public void requestPermissions(){
-        PermissionUtil.requestPermission(new PermissionUtil.RequestPermission() {
-            @Override
-            public void onRequestPermissionSuccess() {
-                mRootView.showMessage("请求权限成功");
-            }
-
-            @Override
-            public void onRequestPermissionFailure(List<String> permissions) {
-                mRootView.showMessage("请求权限失败");
-            }
-
-            @Override
-            public void onRequestPermissionFailureWithAskNeverAgain(List<String> permissions) {
-
-            }
-        }, mRootView.getRxPermissions(), mErrorHandler, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE);
-    }
 }

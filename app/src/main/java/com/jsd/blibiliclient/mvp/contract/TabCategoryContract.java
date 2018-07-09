@@ -2,10 +2,9 @@ package com.jsd.blibiliclient.mvp.contract;
 
 import android.support.v7.widget.RecyclerView;
 
-import com.jess.arms.base.DefaultAdapter;
 import com.jess.arms.mvp.IView;
 import com.jess.arms.mvp.IModel;
-import com.jsd.blibiliclient.di.module.entity.live.LiveAppIndexInfo;
+import com.jsd.blibiliclient.app.data.entity.live.LiveAppIndexInfo;
 
 import io.reactivex.Observable;
 

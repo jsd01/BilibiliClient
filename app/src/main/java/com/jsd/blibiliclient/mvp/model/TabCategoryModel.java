@@ -10,11 +10,13 @@ import com.jess.arms.di.scope.ActivityScope;
 
 import javax.inject.Inject;
 
-import com.jsd.blibiliclient.di.module.entity.live.LiveAppIndexInfo;
+import com.jsd.blibiliclient.app.data.api.Api;
+import com.jsd.blibiliclient.app.data.entity.live.LiveAppIndexInfo;
 import com.jsd.blibiliclient.mvp.contract.TabCategoryContract;
-import com.jsd.blibiliclient.mvp.model.api.LiveService;
+import com.jsd.blibiliclient.app.data.api.service.LiveService;
 
 import io.reactivex.Observable;
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 
 
 @ActivityScope
@@ -27,6 +29,7 @@ public class TabCategoryModel extends BaseModel implements TabCategoryContract.M
     @Inject
     public TabCategoryModel(IRepositoryManager repositoryManager) {
         super(repositoryManager);
+        RetrofitUrlManager.getInstance().putDomain("live", Api.LIVE_BASE_URL);
     }
 
     @Override

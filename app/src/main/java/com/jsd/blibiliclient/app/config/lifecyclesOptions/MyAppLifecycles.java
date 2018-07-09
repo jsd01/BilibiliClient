@@ -6,6 +6,7 @@ import android.content.Context;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.jess.arms.base.delegate.AppLifecycles;
 import com.jsd.blibiliclient.BuildConfig;
+import com.jsd.blibiliclient.app.GreenDaoHelper;
 import com.squareup.leakcanary.LeakCanary;
 import com.squareup.leakcanary.RefWatcher;
 
@@ -24,6 +25,11 @@ public class MyAppLifecycles implements AppLifecycles {
         initLeakCanary(application);
         initFragmentation();
         initARouter(application);
+        initGreenDao(application);
+    }
+
+    private void initGreenDao(Application application) {
+        GreenDaoHelper.initDatabase(application);
     }
 
     @Override
@@ -58,7 +64,7 @@ public class MyAppLifecycles implements AppLifecycles {
                     @Override
                     public void onException(Exception e) {
                         // 以Bugtags为例子: 把捕获到的 Exception 传到 Bugtags 后台。
-                        // Bugtags.sendException(e);
+//                         Bugtags.sendException(e);
                     }
                 })
                 .install();

@@ -95,6 +95,7 @@ ext {
             "fragmentation"            : "me.yokeyword:fragmentation:${version["fragmentationVersion"]}",
             "fragmentation-core"       : "me.yokeyword:fragmentation-core:${version["fragmentationVersion"]}",
             "fragmentation-swipeback"  : "me.yokeyword:fragmentation-swipeback:${version["fragmentationVersion"]}",
+            "brvah"                           : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.32",
 
             //test
             "junit"                    : "junit:junit:4.12",

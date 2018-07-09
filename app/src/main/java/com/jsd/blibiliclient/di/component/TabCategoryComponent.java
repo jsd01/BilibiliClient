@@ -8,10 +8,10 @@ import com.jess.arms.di.component.AppComponent;
 
 import com.jsd.blibiliclient.di.module.TabCategoryModule;
 
-import com.jsd.blibiliclient.mvp.ui.fragment.hometab.TabCategoryFragment;
+import com.jsd.blibiliclient.mvp.ui.fragment.hometab.LiveFragment;
 
 @ActivityScope
 @Component(modules = TabCategoryModule.class, dependencies = AppComponent.class)
 public interface TabCategoryComponent {
-    void inject(TabCategoryFragment fragment);
+    void inject(LiveFragment fragment);
 }

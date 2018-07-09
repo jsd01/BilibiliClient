@@ -7,6 +7,7 @@ package com.jsd.blibiliclient.app;
 public interface EventBusTags {
 
     String ACTIVITY_FRAGMENT_REPLACE = "AppMainTabFragmentReplace";
+    String FRAGMENT_TOOLBAR_DRAWER = "fragment_toolbar_drawer";
     String EXTRA_DETAIL = "extra_detail";
 
 }

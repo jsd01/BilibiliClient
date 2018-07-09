@@ -16,11 +16,14 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
+import com.jess.arms.di.component.AppComponent;
+import com.jess.arms.http.imageloader.glide.ImageConfigImpl;
+import com.jess.arms.utils.ArmsUtils;
 import com.jsd.blibiliclient.R;
 import com.jsd.blibiliclient.app.widget.CircleImageView;
 import com.jsd.blibiliclient.app.widget.banner.BannerEntity;
 import com.jsd.blibiliclient.app.widget.banner.BannerView;
-import com.jsd.blibiliclient.di.module.entity.live.LiveAppIndexInfo;
+import com.jsd.blibiliclient.app.data.entity.live.LiveAppIndexInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +44,7 @@ import io.reactivex.Observable;
 public class HomeLiveAdapter extends RecyclerView.Adapter{
 
     private final Context context;
+    private AppComponent mAppComponent;
     private LiveAppIndexInfo mLiveAppIndexInfo;
     private int entranceSize;
 
@@ -68,6 +72,7 @@ public class HomeLiveAdapter extends RecyclerView.Adapter{
     };
 
     public HomeLiveAdapter(Context context) {
+        mAppComponent = ArmsUtils.obtainAppComponentFromContext(context);
         this.context = context;
     }
 
@@ -121,6 +126,7 @@ public class HomeLiveAdapter extends RecyclerView.Adapter{
             RequestOptions options = new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL);
             Glide.with(context)
                     .load(entranceIconRes[position])
+                    .apply(options)
                     .into(((LiveEntranceViewHolder) holder).image);
         } else if (holder instanceof LiveItemViewHolder) {
 
@@ -128,17 +134,16 @@ public class HomeLiveAdapter extends RecyclerView.Adapter{
 
             livesBean = mLiveAppIndexInfo.getData().getPartitions().get(getItemPosition(position))
                     .getLives().get(position - 1 - entranceSize - getItemPosition(position) * 5);
-            RequestOptions options = new RequestOptions()
-                    .placeholder(R.drawable.bili_default_image_tv).diskCacheStrategy(DiskCacheStrategy.NONE);
-            Glide.with(context)
-                    .load(livesBean.getCover().getSrc())
-                    .apply(options)
-                    .into(liveItemViewHolder.itemLiveCover);
-            options.placeholder(R.drawable.ico_user_default);
-            Glide.with(context)
-                    .load(livesBean.getOwner().getFace())
-                    .apply(options)
-                    .into(((LiveItemViewHolder) holder).itemLiveUserCover);
+            mAppComponent.imageLoader()
+                    .loadImage(context, ImageConfigImpl.builder()
+                    .url((livesBean.getCover().getSrc()))
+                    .imageView(liveItemViewHolder.itemLiveCover)
+                    .build());
+            mAppComponent.imageLoader()
+                    .loadImage(context, ImageConfigImpl.builder()
+                            .url((livesBean.getOwner().getFace()))
+                            .imageView(liveItemViewHolder.itemLiveUserCover)
+                            .build());
 
             liveItemViewHolder.itemLiveTitle.setText(livesBean.getTitle());
             liveItemViewHolder.itemLiveUser.setText(livesBean.getOwner().getName());
@@ -152,12 +157,11 @@ public class HomeLiveAdapter extends RecyclerView.Adapter{
             LivePartitionViewHolder livePartitionViewHolder = (LivePartitionViewHolder) holder;
             LiveAppIndexInfo.DataBean.PartitionsBean.PartitionBean partition = mLiveAppIndexInfo.
                     getData().getPartitions().get(getItemPosition(position)).getPartition();
-            RequestOptions options = new RequestOptions()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL).diskCacheStrategy(DiskCacheStrategy.NONE);
-            Glide.with(context)
-                    .load(partition.getSub_icon().getSrc())
-                    .apply(options)
-                    .into(livePartitionViewHolder.itemIcon);
+            mAppComponent.imageLoader()
+                    .loadImage(context, ImageConfigImpl.builder()
+                            .url(partition.getSub_icon().getSrc())
+                            .imageView(livePartitionViewHolder.itemIcon)
+                            .build());
             livePartitionViewHolder.itemTitle.setText(partition.getName());
             SpannableStringBuilder stringBuilder = new SpannableStringBuilder(
                     "当前" + partition.getCount() + "个直播");

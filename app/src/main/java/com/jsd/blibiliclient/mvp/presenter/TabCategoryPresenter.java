@@ -1,9 +1,7 @@
 package com.jsd.blibiliclient.mvp.presenter;
 
 import android.app.Application;
-import android.support.v7.widget.RecyclerView;
 
-import com.jess.arms.base.DefaultAdapter;
 import com.jess.arms.integration.AppManager;
 import com.jess.arms.di.scope.ActivityScope;
 import com.jess.arms.mvp.BasePresenter;
@@ -18,8 +16,7 @@ import me.jessyan.rxerrorhandler.handler.RetryWithDelay;
 
 import javax.inject.Inject;
 
-import com.jsd.blibiliclient.app.utils.RxUtils;
-import com.jsd.blibiliclient.di.module.entity.live.LiveAppIndexInfo;
+import com.jsd.blibiliclient.app.data.entity.live.LiveAppIndexInfo;
 import com.jsd.blibiliclient.mvp.contract.TabCategoryContract;
 import com.jsd.blibiliclient.mvp.ui.adapter.HomeLiveAdapter;
 

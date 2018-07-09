@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 
+import com.jsd.blibiliclient.app.EventBusTags;
 import com.jsd.blibiliclient.di.component.DaggerChannelComponent;
 import com.jsd.blibiliclient.di.module.ChannelModule;
 import com.jsd.blibiliclient.mvp.contract.ChannelContract;
@@ -21,12 +23,23 @@ import com.jsd.blibiliclient.mvp.presenter.ChannelPresenter;
 
 import com.jsd.blibiliclient.R;
 
+import org.simple.eventbus.EventBus;
+
+import butterknife.BindView;
+import butterknife.OnClick;
+
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 /**
  * 频道
  */
 public class ChannelFragment extends BaseFragment<ChannelPresenter> implements ChannelContract.View {
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @OnClick(R.id.toolbar)
+    void openDrawer(){
+        EventBus.getDefault().post(new Object(), EventBusTags.FRAGMENT_TOOLBAR_DRAWER);
+    }
 
     public static ChannelFragment newInstance() {
         ChannelFragment fragment = new ChannelFragment();

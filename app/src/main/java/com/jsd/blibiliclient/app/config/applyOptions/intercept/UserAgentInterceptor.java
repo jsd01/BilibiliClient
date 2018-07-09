@@ -1,5 +1,7 @@
 package com.jsd.blibiliclient.app.config.applyOptions.intercept;
 
+import com.jsd.blibiliclient.app.data.api.Api;
+
 import java.io.IOException;
 
 import okhttp3.Interceptor;
@@ -13,10 +15,10 @@ public class UserAgentInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request originalRequest = chain.request();
-        /*Request requestWithUserAgent = originalRequest.newBuilder()
+        Request requestWithUserAgent = originalRequest.newBuilder()
                 .removeHeader("User-Agent")
                 .addHeader("User-Agent", Api.COMMON_UA_STR)
-                .build();*/
+                .build();
         return chain.proceed(originalRequest);
     }
 }

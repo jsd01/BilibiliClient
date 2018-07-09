@@ -54,7 +54,6 @@ dependencies {
 
     implementation 'me.jessyan:arms:2.4.1'
     implementation rootProject.ext.dependencies["retrofit-url-manager"]
-    implementation rootProject.ext.dependencies["fragmentation-core"]
     implementation rootProject.ext.dependencies["rxlifecycle2-components"]//RxUtils使用
 
     implementation rootProject.ext.dependencies["gson"]
@@ -67,4 +66,7 @@ dependencies {
 
     implementation 'org.greenrobot:greendao:3.2.2'
     implementation 'com.roughike:bottom-bar:2.3.1'
+    implementation rootProject.ext.dependencies["fragmentation-core"]
+    implementation rootProject.ext.dependencies["brvah"]
+
 }

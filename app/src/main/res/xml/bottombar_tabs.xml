@@ -2,21 +2,21 @@
 <tabs>
     <tab
         id="@+id/main_tab_home"
-        icon="@mipmap/mall_mine_icon_home"
+        icon="@mipmap/ic_home_unselected"
         title="@string/main_tab_home" />
     <tab
         id="@+id/main_tab_channel"
-        icon="@mipmap/mall_mine_icon_home"
+        icon="@mipmap/ic_category_unselected"
         title="@string/main_tab_channel" />
 
     <tab
         id="@+id/main_tab_dynamic"
-        icon="@mipmap/mall_mine_icon_home"
+        icon="@mipmap/ic_dynamic_unselected"
         title="@string/main_tab_dynamic" />
 
     <tab
         id="@+id/main_tab_vipbuy"
-        icon="@mipmap/mall_mine_icon_home"
+        icon="@mipmap/ic_communicate_unselected"
         title="@string/main_tab_vipbuy" />
 
 

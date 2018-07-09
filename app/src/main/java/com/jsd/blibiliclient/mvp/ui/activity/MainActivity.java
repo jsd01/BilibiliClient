@@ -8,17 +8,23 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.Postcard;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.facade.callback.NavigationCallback;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.jess.arms.base.BaseActivity;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 
+import com.jsd.blibiliclient.app.EventBusTags;
+import com.jsd.blibiliclient.app.base.BaseSupportActivity;
 import com.jsd.blibiliclient.app.utils.FragmentUtils;
 import com.jsd.blibiliclient.di.component.DaggerMainComponent;
 import com.jsd.blibiliclient.di.module.MainModule;
@@ -35,19 +41,22 @@ import com.roughike.bottombar.OnTabSelectListener;
 import com.tbruyelle.rxpermissions2.RxPermissions;
 
 
+import org.simple.eventbus.Subscriber;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindArray;
 import butterknife.BindString;
 import butterknife.BindView;
+import me.yokeyword.fragmentation.ISupportFragment;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 import static com.jsd.blibiliclient.app.ARouterPaths.MAIN;
 import static com.jsd.blibiliclient.app.EventBusTags.ACTIVITY_FRAGMENT_REPLACE;
 
 @Route(path = MAIN)
-public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View, NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends BaseSupportActivity<MainPresenter> implements MainContract.View, NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawerLayout;
@@ -62,8 +71,8 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     private List<Fragment> mFragments;
     private List<Integer> mNavIds;
     private int mMainPageReplace = 0;
-    private int mTabPageReplace = 0;
 
+    private long mPreTime;
     private RxPermissions mRxPermissions;
 
     private OnTabSelectListener mOnTabSelectListener = tabId -> {
@@ -102,15 +111,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-
-       /* if (mTitles == null) {
-            mTitles = new ArrayList<>();
-            mTitles.add(R.string.main_tab_home);
-            mTitles.add(R.string.main_tab_channel);
-            mTitles.add(R.string.main_tab_dynamic);
-            mTitles.add(R.string.main_tab_vipbuy);
-        }*/
-        mPresenter.requestPermissions();
         if (mNavIds == null) {
             mNavIds = new ArrayList<>();
             mNavIds.add(R.id.main_tab_home);
@@ -183,7 +183,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.nav_home:
                 break;
             case R.id.nav_historyrecord:
@@ -196,8 +196,6 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
                 break;
             case R.id.nav_waitlook:
                 break;
-
-
             case R.id.nav_onlivecenter:
                 break;
             case R.id.nav_vip:
@@ -209,12 +207,44 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             case R.id.nav_custom:
                 break;
         }
-        mDrawerLayout.closeDrawer(mNavigationView);
+        closeDrawer();
         return true;
+    }
+
+    private void closeDrawer() {
+        mDrawerLayout.closeDrawer(mNavigationView);
+    }
+
+    @Override
+    public void onBackPressedSupport() {
+        if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            closeDrawer();
+        } else {
+            if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+                pop();
+            } else {
+                // 2秒内两次点击返回键退出应用
+                long nowTime = System.currentTimeMillis();
+                if (nowTime - mPreTime > 2000) {
+                    ArmsUtils.makeText(this, ArmsUtils.getString(this, R.string.double_click_to_exit));
+                    mPreTime = nowTime;
+                } else {
+                    ArmsUtils.exitApp();
+                }
+            }
+        }
+
     }
 
     @Override
     public RxPermissions getRxPermissions() {
         return mRxPermissions;
+    }
+
+    @Subscriber(tag = EventBusTags.FRAGMENT_TOOLBAR_DRAWER)
+    public void openDrawer(Object obj) {
+        if (!mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+            mDrawerLayout.openDrawer(GravityCompat.START);
+        }
     }
 }

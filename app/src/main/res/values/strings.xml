@@ -20,5 +20,15 @@
     <string name="drawer_sets">设置</string>
     <string name="drawer_theme">主题</string>
     <string name="drawer_night">夜间</string>
+    <string name="double_click_to_exit">再按一次退出</string>
 
+    <!--toolbar tab-->
+    <string name="main_download">下载</string>
+    <string name="main_connectioin">消息</string>
+
+    <!--RecommendFragment-->
+    <string name="recommend_home_comprehensive">综合</string>
+    <string name="recommend_home_rank_list">排行榜</string>
+    <string name="recommend_home_tag">标签</string>
+    <string name="recommend_home_update_to_last_index">更新至第$1%d话</string>
 </resources>

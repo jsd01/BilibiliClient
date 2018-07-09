@@ -1,6 +1,8 @@
 package com.jsd.blibiliclient.app;
 
+
 public interface ARouterPaths {
 
-    String MAIN = "/main/detail";
+    String MAIN = "/main/tabwithnav";
+
 }

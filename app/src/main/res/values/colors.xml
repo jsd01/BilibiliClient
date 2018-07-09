@@ -15,4 +15,13 @@
     <color name="white">#FFFFFF</color>
     <color name="white_30">#F2F2F2</color>
     <color name="white_80">#FAFAFA</color>
+
+    <!--RecommendFragment-->
+    <color name="item_title_text_recommend">#333333</color>
+    <color name="item_item_dest_text_recommend">#AAAAAA</color>
+    <color name="item_streamer_badge_text_recommend">#fb7299</color>
+    <color name="item_item_yellow_tag_text_recommend">#FB9E60</color>
+    <color name="item_item_gray_tag_text_recommend">#CCCCCC</color>
+    <color name="item_item_av_info_text_recommend">#FFFFFF</color>
+    <color name="item_item_ad_info_text_recommend">#FFFFFF</color>
 </resources>
