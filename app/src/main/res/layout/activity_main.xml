@@ -21,7 +21,7 @@
         <com.roughike.bottombar.BottomBar
             android:id="@+id/bottomBar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_60"
+            android:layout_height="@dimen/dp_50"
             android:layout_gravity="bottom"
             app:bb_tabXmlResource="@xml/bottombar_tabs" />
 

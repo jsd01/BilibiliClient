@@ -30,6 +30,7 @@ import com.jsd.blibiliclient.R;
 import com.jsd.blibiliclient.mvp.ui.adapter.RecommendMultiitemAtapter;
 
 import org.simple.eventbus.EventBus;
+import org.simple.eventbus.Subscriber;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -124,6 +125,7 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
         GridLayoutManager gridLayoutManager = new GridLayoutManager(_mActivity, 2);
         mRecyclerView.setLayoutManager(gridLayoutManager);
         mRecyclerView.setAdapter(adapter);
+
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(int position) {
@@ -139,5 +141,23 @@ public class RecommendFragment extends BaseSupportFragment<RecommendPresenter> i
     @Override
     public void recyclerScrollToPosition(int position) {
         mRecyclerView.scrollToPosition(position);
+    }
+
+    @Override
+    public void showEmptyView() {
+        mSwipeRefreshLayout.setRefreshing(false);
+        mCustomEmptyView.setVisibility(View.VISIBLE);
+        mRecyclerView.setVisibility(View.GONE);
+        mCustomEmptyView.setEmptyImage(R.drawable.loading_failed);
+        mCustomEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
+    }
+
+    @Override
+    public void initEmptyView() {
+        mSwipeRefreshLayout.setRefreshing(false);
+        mCustomEmptyView.setVisibility(View.GONE);
+        mRecyclerView.setVisibility(View.VISIBLE);
+        mCustomEmptyView.setEmptyImage(0);
+        mCustomEmptyView.setEmptyText("");
     }
 }

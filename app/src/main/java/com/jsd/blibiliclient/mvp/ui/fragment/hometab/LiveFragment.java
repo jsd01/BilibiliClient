@@ -19,6 +19,7 @@ import com.jess.arms.base.BaseFragment;
 import com.jess.arms.di.component.AppComponent;
 import com.jess.arms.utils.ArmsUtils;
 
+import com.jsd.blibiliclient.app.base.BaseSupportFragment;
 import com.jsd.blibiliclient.app.widget.CustomEmptyView;
 import com.jsd.blibiliclient.di.component.DaggerTabCategoryComponent;
 import com.jsd.blibiliclient.di.module.TabCategoryModule;
@@ -28,12 +29,14 @@ import com.jsd.blibiliclient.mvp.presenter.TabCategoryPresenter;
 import com.jsd.blibiliclient.R;
 import com.jsd.blibiliclient.mvp.ui.adapter.HomeLiveAdapter;
 
+import org.simple.eventbus.Subscriber;
+
 import butterknife.BindView;
 
 import static com.jess.arms.utils.Preconditions.checkNotNull;
 
 
-public class LiveFragment extends BaseFragment<TabCategoryPresenter> implements TabCategoryContract.View , SwipeRefreshLayout.OnRefreshListener{
+public class LiveFragment extends BaseSupportFragment<TabCategoryPresenter> implements TabCategoryContract.View , SwipeRefreshLayout.OnRefreshListener{
 
     @BindView(R.id.swipe_refresh_layout)
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -73,9 +76,21 @@ public class LiveFragment extends BaseFragment<TabCategoryPresenter> implements 
         type = getArguments().getString("type");
 //        mHomeLiveAdapter = new HomeLiveAdapter(getContext());
         mPresenter.requestLiveData(true);
+        mSwipeRefreshLayout.setColorSchemeColors(ArmsUtils.getColor(_mActivity, R.color.colorPrimary));
         mSwipeRefreshLayout.setOnRefreshListener(this);
     }
+    @Subscriber(tag = "未知错误")
+    private void initEmptyView(String str) {
+        //判断当前栈内谁在最前面
+        if (isSupportVisible()){
+            mSwipeRefreshLayout.setRefreshing(false);
+            mCustomEmptyView.setVisibility(View.VISIBLE);
+            mRecyclerView.setVisibility(View.GONE);
+            mCustomEmptyView.setEmptyImage(R.drawable.loading_failed);
+            mCustomEmptyView.setEmptyText("加载失败~(≧▽≦)~啦啦啦.");
+        }
 
+    }
 
     /**
      * 通过此方法可以使 Fragment 能够与外界做一些交互和通信, 比如说外部的 Activity 想让自己持有的某个 Fragment 对象执行一些方法,

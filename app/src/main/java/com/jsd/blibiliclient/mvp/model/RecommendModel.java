@@ -51,7 +51,7 @@ public class RecommendModel extends BaseModel implements RecommendContract.Model
     }
 
     @Override
-    public Observable<RecommendIndexData> getRecommendIndexData(int index, boolean refresh, boolean clearCache) {
+    public Observable<RecommendIndexData> getRecommendIndexData(int index, boolean refresh, boolean clearCache) {/*访问网路也是处理数据*/
         return Observable.just(mRepositoryManager
                 .obtainRetrofitService(RecommendService.class)
                 .getRecommendIndexData(index, refresh ? "true" : "false", clearCache ? 1 : 0))
@@ -64,7 +64,7 @@ public class RecommendModel extends BaseModel implements RecommendContract.Model
     }
 
     @Override
-    public List<RecommendMultiItem> parseIndexData(RecommendIndexData indexData) {
+    public List<RecommendMultiItem> parseIndexData(RecommendIndexData indexData) {/*数据转换也是处理数据*/
         List<RecommendMultiItem> list = new ArrayList<>();
         List<RecommendIndexData.DataBean> data = indexData.getData();
         if (data != null) {
