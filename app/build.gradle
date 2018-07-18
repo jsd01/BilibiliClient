@@ -49,24 +49,41 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.aar'], dir: 'libs')
     implementation rootProject.ext.dependencies["cardview-v7"]
-
+    implementation rootProject.ext.dependencies["design"]
+    implementation rootProject.ext.dependencies["appcompat-v7"]
     implementation 'me.jessyan:arms:2.4.1'
     implementation rootProject.ext.dependencies["retrofit-url-manager"]
-    implementation rootProject.ext.dependencies["rxlifecycle2-components"]//RxUtils使用
-
+    implementation rootProject.ext.dependencies["rxlifecycle2-components"]
+    //RxUtils使用
     implementation rootProject.ext.dependencies["gson"]
-    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"] //Butterknife 插件,很多人因为没加这个而报错,切记!!!
+    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
+    //Butterknife 插件,很多人因为没加这个而报错,切记!!!
     annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
     implementation rootProject.ext.dependencies["arouter"]
     annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
-
     debugImplementation rootProject.ext.dependencies["canary-debug"]
-
     implementation 'org.greenrobot:greendao:3.2.2'
     implementation 'com.roughike:bottom-bar:2.3.1'
+    implementation rootProject.ext.dependencies["flowlayout"]
+    implementation(rootProject.ext.dependencies["FlycoTabLayout_Lib"])
     implementation rootProject.ext.dependencies["fragmentation-core"]
     implementation rootProject.ext.dependencies["brvah"]
-
+    implementation rootProject.ext.dependencies["FlycoSystemBar_Lib"]
+    //    // gsyVideoPlayer
+    //    implementation(rootProject.ext.dependencies["ijkplayer-java"])
+    //    implementation(rootProject.ext.dependencies["ijkplayer-exo"])
+    //    implementation(rootProject.ext.dependencies["transitionseverywhere"])
+    //    implementation(rootProject.ext.dependencies["gsyvideoplayer-androidvideocache"])
+    implementation(rootProject.ext.dependencies["gsyVideoPlayer-java"])
+    // 源码对本项目报错，修改后改用aar导入，但必须同时导入以上四个（ijkplayer-java、ijkplayer-exo、transitionseverywhere、gsyvideoplayer-androidvideocache）
+    implementation(rootProject.ext.dependencies["gsyVideoPlayer-armv5"])
+    implementation(rootProject.ext.dependencies["gsyVideoPlayer-armv7a"])
+    implementation(rootProject.ext.dependencies["gsyVideoPlayer-arm64"])
+    implementation(rootProject.ext.dependencies["gsyVideoPlayer-x64"])
+    implementation(rootProject.ext.dependencies["gsyVideoPlayer-x86"])
+    //    更多配置版so，增加了concat,rtsp,mpeg，crypto
+    //    implementation(rootProject.ext.dependencies["gsyVideoPlayer-ex_so"])
+    implementation project(':IMLib')
 }

@@ -19,7 +19,9 @@ ext {
             rxlifecycle2SdkVersion  : "2.2.1",
             espressoSdkVersion      : "3.0.1",
             canarySdkVersion        : "1.5.4",
-            fragmentationVersion    : "1.1.6"
+            fragmentationVersion    : "1.1.6",
+            ijkplayerVersion        : "0.8.8",
+            gsyVideoVersion         : "5.0.1"
     ]
 
     dependencies = [
@@ -54,6 +56,8 @@ ext {
             "nineoldandroids"          : "com.nineoldandroids:library:2.4.0",
             "paginate"                 : "com.github.markomilos:paginate:0.5.1",
             "vlayout"                  : "com.alibaba.android:vlayout:1.1.0@aar",
+            "flowlayout"               : "com.hyman:flowlayout-lib:1.1.2",
+            "FlycoTabLayout_Lib"       : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
 
             //rx1
             "rxandroid"                : "io.reactivex:rxandroid:1.2.1",
@@ -96,6 +100,27 @@ ext {
             "fragmentation-core"       : "me.yokeyword:fragmentation-core:${version["fragmentationVersion"]}",
             "fragmentation-swipeback"  : "me.yokeyword:fragmentation-swipeback:${version["fragmentationVersion"]}",
             "brvah"                           : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.32",
+            "FlycoSystemBar_Lib"              : "com.flyco.systembar:FlycoSystemBar_Lib:1.0.0@aar",
+
+            // ijkplayer
+            "ijkplayer-java"                  : "tv.danmaku.ijk.media:ijkplayer-java:${version["ijkplayerVersion"]}",
+            "ijkplayer-exo"                   : "tv.danmaku.ijk.media:ijkplayer-exo:${version["ijkplayerVersion"]}",
+            "ijkplayer-armv7a"                : "tv.danmaku.ijk.media:ijkplayer-armv7a:${version["ijkplayerVersion"]}",
+            "ijkplayer-armv5"                 : "tv.danmaku.ijk.media:ijkplayer-armv5:${version["ijkplayerVersion"]}",
+            "ijkplayer-arm64"                 : "tv.danmaku.ijk.media:ijkplayer-arm64:${version["ijkplayerVersion"]}",
+            "ijkplayer-x86"                   : "tv.danmaku.ijk.media:ijkplayer-x86:${version["ijkplayerVersion"]}",
+            "ijkplayer-x86_64"                : "tv.danmaku.ijk.media:ijkplayer-x86_64:${version["ijkplayerVersion"]}",
+
+            //gsyVideoPlayer
+            "transitionseverywhere"           : "com.andkulikov:transitionseverywhere:1.7.0",
+            "gsyvideoplayer-androidvideocache": "com.shuyu:gsyvideoplayer-androidvideocache:${version["gsyVideoVersion"]}",
+            "gsyVideoPlayer-java"             : "com.shuyu:gsyVideoPlayer-java:${version["gsyVideoVersion"]}",
+            "gsyVideoPlayer-armv5"            : "com.shuyu:gsyVideoPlayer-armv5:${version["gsyVideoVersion"]}",
+            "gsyVideoPlayer-armv7a"           : "com.shuyu:gsyVideoPlayer-armv7a:${version["gsyVideoVersion"]}",
+            "gsyVideoPlayer-arm64"            : "com.shuyu:gsyVideoPlayer-arm64:${version["gsyVideoVersion"]}",
+            "gsyVideoPlayer-x64"              : "com.shuyu:gsyVideoPlayer-x64:${version["gsyVideoVersion"]}",
+            "gsyVideoPlayer-x86"              : "com.shuyu:gsyVideoPlayer-x86:${version["gsyVideoVersion"]}",
+            "gsyVideoPlayer-ex_so"            : "com.shuyu:gsyVideoPlayer-ex_so:${version["gsyVideoVersion"]}",
 
             //test
             "junit"                    : "junit:junit:4.12",

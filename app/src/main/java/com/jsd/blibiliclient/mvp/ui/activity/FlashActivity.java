@@ -28,7 +28,6 @@ import static com.jsd.blibiliclient.app.ARouterPaths.MAIN;
 
 
 public class FlashActivity extends BaseActivity<FlashPresenter> implements FlashContract.View {
-
     @BindView(R.id.imageView)
     ImageView imageView;
     @Override

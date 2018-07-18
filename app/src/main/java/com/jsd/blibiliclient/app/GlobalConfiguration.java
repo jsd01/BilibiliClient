@@ -13,13 +13,13 @@ import com.jsd.blibiliclient.app.config.applyOptions.MyGsonConfiguration;
 import com.jsd.blibiliclient.app.config.applyOptions.MyResponseErrorListener;
 import com.jsd.blibiliclient.app.config.applyOptions.MyRetrofitConfiguration;
 import com.jsd.blibiliclient.app.config.applyOptions.MyRxCacheConfiguration;
-import com.jsd.blibiliclient.app.config.applyOptions.intercept.UserAgentInterceptor;
 import com.jsd.blibiliclient.app.config.lifecyclesOptions.MyActivityLifecycle;
 import com.jsd.blibiliclient.app.config.lifecyclesOptions.MyAppLifecycles;
-import com.jsd.blibiliclient.app.data.api.Api;
 
 import java.io.File;
 import java.util.List;
+
+import io.rong.imlib.RongIMClient;
 
 /**
  * 项目名称：BlibiliClient
